@@ -1,0 +1,4 @@
+# ignore object and swap files
+
+*.o
+*~
