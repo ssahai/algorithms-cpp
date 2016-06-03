@@ -82,7 +82,7 @@ int main() {
                 break;
             case 2:
                 if (head == NULL) {
-                    cout << "Linklist not initialized! Initialize linklist to insert node." <<endl;
+                    cout << "\nERROR : Linklist not initialized! Initialize linklist to insert node." <<endl;
                 }
                 else {
                     insert (head);
