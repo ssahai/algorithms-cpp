@@ -19,11 +19,12 @@ int choices() {
     cout << "\n\nWhat would you like to do ? \n" <<endl;
     cout << "\t(1) Initialize an empty link list."<<endl;
     cout << "\t(2) Insert a node." << endl;
-    cout << "\t(3) Exit." << endl;
+    cout << "\t(3) Print Linklist." << endl;
+    cout << "\t(4) Exit." << endl;
     cout << "\nEnter Choice : ";
     cin >> ch;
-    while (ch<1 || ch >3) {
-        cout << "Please enter choice between (1) to (3) : " << endl;
+    while (ch<1 || ch >4) {
+        cout << "Please enter choice between (1) to (4) : " << endl;
         cin >> ch;
     }
     return ch;
@@ -34,14 +35,14 @@ int choices() {
 NODE * init() {
     NODE * head = (NODE*) malloc (sizeof (NODE));
     head -> next = NULL;
-    head -> data = NULL;
+    head -> data = 0;
     cout << "Link List initialized"<<endl;
     return head;
 }
 
 // Code to insert a node in the link list. 
 
-int insert (NODE * head) {
+void insert (NODE * head) {
     int ch;
     int d;
     cout << "Enter the data you want to insert ? ";
@@ -62,7 +63,7 @@ int insert (NODE * head) {
             break;
         case 2:
             ctr = head;
-            while (ctr != NULL) {
+            while (ctr->next != NULL) {
                 ctr = ctr -> next;
             }
             temp -> next = NULL;
@@ -72,6 +73,15 @@ int insert (NODE * head) {
     }
 } 
 
+void display(NODE * head) {
+    cout << "HEAD --> ";
+    NODE * ctr = head -> next;
+    while(ctr != NULL) {
+        cout << ctr -> data << " --> ";
+        ctr  = ctr -> next;
+    }
+    cout << "END"<<endl;
+}
     
 // Main function
 
@@ -80,13 +90,13 @@ int main() {
     cout << "==================";
     int c;
     NODE * head = NULL;
+    NODE * ctr = head;
     while (1) {
         c = choices();
         switch(c) {
             case 1:
                 if (head == NULL) {
                     head = init();
-                    cout << head->data;
                 }
                 else {
                     cout << "\nERROR : Link list already exist." << endl;
@@ -101,6 +111,9 @@ int main() {
                 }
                 break;
             case 3:
+                display(head);
+                break;
+            case 4:
                 return 0;
             default:
                 cout << "Wrong choice entered ! "<<endl;
