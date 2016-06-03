@@ -39,6 +39,8 @@ NODE * init() {
     return head;
 }
 
+// Code to insert a node in the link list. 
+
 int insert (NODE * head) {
     int ch;
     int d;
@@ -49,12 +51,22 @@ int insert (NODE * head) {
     cout << "\t(2) At the end of the list."<<endl;
     cout << "Enter choice : ";
     cin  >> ch;
+    NODE * ctr;
     NODE * temp = (NODE*) malloc (sizeof (NODE));
+    temp -> data = d;
     switch(ch) {
-        case (1):
+        case 1:
             temp -> next = head -> next;
-            temp -> data = d;
             head -> next = temp;
+            cout << "\nNode inserted at the beginning of the list" <<endl;
+            break;
+        case 2:
+            ctr = head;
+            while (ctr != NULL) {
+                ctr = ctr -> next;
+            }
+            temp -> next = NULL;
+            ctr  -> next = temp;
             cout << "\nNode inserted at the beginning of the list" <<endl;
             break;
     }
@@ -77,7 +89,7 @@ int main() {
                     cout << head->data;
                 }
                 else {
-                    cout << "\nLink list already exist." << endl;
+                    cout << "\nERROR : Link list already exist." << endl;
                 }
                 break;
             case 2:
@@ -90,6 +102,8 @@ int main() {
                 break;
             case 3:
                 return 0;
+            default:
+                cout << "Wrong choice entered ! "<<endl;
         }
     }
 }
