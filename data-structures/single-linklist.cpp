@@ -16,13 +16,14 @@ typedef struct node {
 
 int choices() {
     int ch = 0;
-    cout << "What would you like to do ? \n" <<endl;
-    cout << "(1) Initialize an empty link list."<<endl;
-    cout << "(2) Exit." << endl;
+    cout << "\n\nWhat would you like to do ? \n" <<endl;
+    cout << "\t(1) Initialize an empty link list."<<endl;
+    cout << "\t(2) Insert a node." << endl;
+    cout << "\t(3) Exit." << endl;
     cout << "\nEnter Choice : ";
     cin >> ch;
-    while (ch<1 || ch >2) {
-        cout << "Please enter choice between (1) to (2) : " << endl;
+    while (ch<1 || ch >3) {
+        cout << "Please enter choice between (1) to (3) : " << endl;
         cin >> ch;
     }
     return ch;
@@ -33,11 +34,33 @@ int choices() {
 NODE * init() {
     NODE * head = (NODE*) malloc (sizeof (NODE));
     head -> next = NULL;
-    head -> data = 10;
+    head -> data = NULL;
+    cout << "Link List initialized"<<endl;
     return head;
 }
 
+int insert (NODE * head) {
+    int ch;
+    int d;
+    cout << "Enter the data you want to insert ? ";
+    cin  >> d;
+    cout << "Where do you want to insert the node ?"<<endl;
+    cout << "\t(1) At the beginning of the list."<<endl;
+    cout << "\t(2) At the end of the list."<<endl;
+    cout << "Enter choice : ";
+    cin  >> ch;
+    NODE * temp = (NODE*) malloc (sizeof (NODE));
+    switch(ch) {
+        case (1):
+            temp -> next = head -> next;
+            temp -> data = d;
+            head -> next = temp;
+            cout << "\nNode inserted at the beginning of the list" <<endl;
+            break;
+    }
+} 
 
+    
 // Main function
 
 int main() {
@@ -54,12 +77,19 @@ int main() {
                     cout << head->data;
                 }
                 else {
-                    cout << "Link list already exist." << endl;
+                    cout << "\nLink list already exist." << endl;
                 }
                 break;
             case 2:
+                if (head == NULL) {
+                    cout << "Linklist not initialized! Initialize linklist to insert node." <<endl;
+                }
+                else {
+                    insert (head);
+                }
+                break;
+            case 3:
                 return 0;
         }
     }
 }
-
