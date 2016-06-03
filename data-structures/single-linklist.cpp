@@ -50,6 +50,7 @@ void insert (NODE * head) {
     cout << "Where do you want to insert the node ?"<<endl;
     cout << "\t(1) At the beginning of the list."<<endl;
     cout << "\t(2) At the end of the list."<<endl;
+    cout << "\t(3) After a node with particular key value."<<endl;
     cout << "Enter choice : ";
     cin  >> ch;
     NODE * ctr;
@@ -68,7 +69,27 @@ void insert (NODE * head) {
             }
             temp -> next = NULL;
             ctr  -> next = temp;
-            cout << "\nNode inserted at the beginning of the list" <<endl;
+            cout << "\nNode inserted at the end of the list" <<endl;
+            break;
+        case 3:
+            int key;
+            cout << "Enter the key after which you want to insert the node. ";
+            cin >>  key;
+            ctr = head;
+            while (ctr->data != key && ctr -> next != NULL) {
+                ctr = ctr -> next;
+            }  
+            if (ctr -> data == key ) {
+                temp -> next = ctr -> next;
+                ctr -> next = temp;
+            }
+            else {
+                cout << "The key does not exist. ";
+                temp -> next = NULL;
+                ctr  -> next = temp;
+                cout << "\nNode inserted at the end of the list" <<endl;
+
+            }
             break;
     }
 } 
