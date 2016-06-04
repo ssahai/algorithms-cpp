@@ -19,13 +19,16 @@ int choices() {
     cout << "\n\nWhat would you like to do ? \n" <<endl;
     cout << "\t(1) Initialize an empty link list."<<endl;
     cout << "\t(2) Insert a node." << endl;
-    cout << "\t(3) Print Linklist." << endl;
-    cout << "\t(4) Print length of Linklist." << endl;
-    cout << "\t(5) Exit." << endl;
+    cout << "\t(3) Delete a node." << endl;
+    cout << "\t(4) Swap two node." << endl;
+    cout << "\t(5) Reverse Linklist." << endl;
+    cout << "\t(6) Print Linklist." << endl;
+    cout << "\t(7) Print length of Linklist." << endl;
+    cout << "\t(8) Exit." << endl;
     cout << "\nEnter Choice : ";
     cin >> ch;
-    while (ch<1 || ch >5) {
-        cout << "Please enter choice between (1) to (5) : " << endl;
+    while (ch<1 || ch >8) {
+        cout << "Please enter choice between (1) to (8) : " << endl;
         cin >> ch;
     }
     return ch;
@@ -95,6 +98,8 @@ void insert (NODE * head) {
     }
 } 
 
+// Code to print the linklist
+
 void display(NODE * head) {
     cout << "HEAD --> ";
     NODE * ctr = head -> next;
@@ -105,6 +110,8 @@ void display(NODE * head) {
     cout << "END"<<endl;
 }
 
+// Code to print the length of the linklist
+
 void length(NODE * head) {
     NODE * temp = head -> next;
     int l = 0;
@@ -114,6 +121,7 @@ void length(NODE * head) {
     }
     cout << "The length of the linklist is : " << l << endl;
 }
+
 // Main function
 
 int main() {
@@ -142,9 +150,18 @@ int main() {
                 }
                 break;
             case 3:
-                display(head);
+                // delete
                 break;
             case 4:
+                // swap
+                break;
+            case 5:
+                // reverse
+                break;
+            case 6:
+                display(head);
+                break;
+            case 7:
                 if (head == NULL) {
                     cout << "\nERROR : Linklist not initialized! Initialize linklist to insert node." <<endl;
                 }
@@ -152,7 +169,7 @@ int main() {
                     length(head);   
                 }
                 break;
-            case 5:
+            case 8:
                 return 0;
             default:
                 cout << "Wrong choice entered ! "<<endl;
