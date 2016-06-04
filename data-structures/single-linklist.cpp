@@ -98,6 +98,51 @@ void insert (NODE * head) {
     }
 } 
 
+// code for deleting a node
+
+int del(NODE * head) {
+    NODE * temp= head;
+    if (head -> next == NULL) {
+        cout << "Linklist is empty. Nothing to delete !" << endl;
+        return 0;
+    }
+    int ch;
+    cout << "Which node to delete ?"<<endl;
+    cout << "\t(1) First node." << endl;
+    cout << "\t(2) Last node."<<endl;
+    cout << "\t(3) Node with a particular key value."<<endl;
+    cout << "Enter choice : ";
+    cin  >> ch;
+    switch (ch) {
+        case 1:
+            cout << "Deleted node with data : " << head -> next -> data << endl;
+            head ->next = head ->next -> next;
+            break;
+        case 2:
+            while (temp -> next -> next != NULL) {
+                temp = temp -> next;
+            }
+            cout << "Deleted node with data : " << temp -> next -> data << endl;
+            temp -> next = NULL;
+            break;
+        case 3:
+            int key;
+            cout << "Enter the key value to delete : " <<endl;
+            cin  >> key;
+            while (temp -> next -> data != key && temp -> next != NULL ) {
+                temp = temp -> next;
+            }
+            if (temp -> next -> data == key) {
+                cout << "Deleting node with data : " << key <<endl;
+                temp -> next = temp -> next -> next;
+            }
+            else {
+                cout << "The key entered does not exist. Nothing to do !";
+            }
+    } 
+    return 1;
+}
+
 // Code to print the linklist
 
 void display(NODE * head) {
@@ -133,7 +178,7 @@ int main() {
     while (1) {
         c = choices();
         switch(c) {
-            case 1:
+            case 1:         // Initialize
                 if (head == NULL) {
                     head = init();
                 }
@@ -141,7 +186,7 @@ int main() {
                     cout << "\nERROR : Link list already exist." << endl;
                 }
                 break;
-            case 2:
+            case 2:         // Insert
                 if (head == NULL) {
                     cout << "\nERROR : Linklist not initialized! Initialize linklist to insert node." <<endl;
                 }
@@ -149,27 +194,32 @@ int main() {
                     insert (head);
                 }
                 break;
-            case 3:
-                // delete
+            case 3:         // Delete
+                if (head == NULL) {
+                    cout << "\nERROR : Linklist not initialized! Initialize linklist before trying to delete node." <<endl;
+                }
+                else {
+                    del (head);
+                }
                 break;
-            case 4:
+            case 4:         // Swap
                 // swap
                 break;
-            case 5:
+            case 5:         // Reverse
                 // reverse
                 break;
-            case 6:
+            case 6:         // Print
                 display(head);
                 break;
-            case 7:
+            case 7:         // Length
                 if (head == NULL) {
-                    cout << "\nERROR : Linklist not initialized! Initialize linklist to insert node." <<endl;
+                    cout << "\nERROR : Linklist not initialized! Initialize linklist to count length." <<endl;
                 }
                 else {
                     length(head);   
                 }
                 break;
-            case 8:
+            case 8:         // Exit
                 return 0;
             default:
                 cout << "Wrong choice entered ! "<<endl;
