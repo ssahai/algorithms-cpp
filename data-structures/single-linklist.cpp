@@ -20,11 +20,12 @@ int choices() {
     cout << "\t(1) Initialize an empty link list."<<endl;
     cout << "\t(2) Insert a node." << endl;
     cout << "\t(3) Print Linklist." << endl;
-    cout << "\t(4) Exit." << endl;
+    cout << "\t(4) Print length of Linklist." << endl;
+    cout << "\t(5) Exit." << endl;
     cout << "\nEnter Choice : ";
     cin >> ch;
-    while (ch<1 || ch >4) {
-        cout << "Please enter choice between (1) to (4) : " << endl;
+    while (ch<1 || ch >5) {
+        cout << "Please enter choice between (1) to (5) : " << endl;
         cin >> ch;
     }
     return ch;
@@ -103,7 +104,16 @@ void display(NODE * head) {
     }
     cout << "END"<<endl;
 }
-    
+
+void length(NODE * head) {
+    NODE * temp = head -> next;
+    int l = 0;
+    while (temp != NULL) {
+        temp = temp -> next;
+        l++;
+    }
+    cout << "The length of the linklist is : " << l << endl;
+}
 // Main function
 
 int main() {
@@ -135,6 +145,14 @@ int main() {
                 display(head);
                 break;
             case 4:
+                if (head == NULL) {
+                    cout << "\nERROR : Linklist not initialized! Initialize linklist to insert node." <<endl;
+                }
+                else {
+                    length(head);   
+                }
+                break;
+            case 5:
                 return 0;
             default:
                 cout << "Wrong choice entered ! "<<endl;
