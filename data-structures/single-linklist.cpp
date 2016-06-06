@@ -24,11 +24,12 @@ int choices() {
     cout << "\t(5) Reverse Linklist." << endl;
     cout << "\t(6) Print Linklist." << endl;
     cout << "\t(7) Print length of Linklist." << endl;
-    cout << "\t(8) Exit." << endl;
+    cout << "\t(8) Search a node in Linklist." << endl;
+    cout << "\t(9) Exit." << endl;
     cout << "\nEnter Choice : ";
     cin >> ch;
-    while (ch<1 || ch >8) {
-        cout << "Please enter choice between (1) to (8) : " << endl;
+    while (ch<1 || ch >9) {
+        cout << "Please enter choice between (1) to (9) : " << endl;
         cin >> ch;
     }
     return ch;
@@ -165,6 +166,26 @@ void reverse(NODE * head) {
     }
 }
 
+// Code to search the linklist
+
+int search (NODE * head) {
+    int key;
+    cout << "Enter the key value to search : ";
+    cin  >> key;
+    NODE * temp = head -> next;
+    int count = 0;
+    while (temp != NULL) {
+        count ++;
+        if (temp -> data == key) {
+            cout << "Key = " << key <<" found in the link list at node "<< count <<endl;
+            return 1;
+        }
+        temp = temp -> next;
+    }
+    cout << "Key = " << key <<" not found in the link list"<<endl;
+    return 0;
+}
+
 // Code to print the linklist
 
 void display(NODE * head) {
@@ -228,7 +249,12 @@ int main() {
                 // swap
                 break;
             case 5:         // Reverse
-                reverse(head);
+                if (head == NULL) {
+                    cout << "\nERROR : Linklist not initialized! Initialize linklist before trying to reverse it." <<endl;
+                }
+                else {
+                    reverse(head);
+                }
                 break;
             case 6:         // Print
                 display(head);
@@ -241,7 +267,15 @@ int main() {
                     length(head);   
                 }
                 break;
-            case 8:         // Exit
+            case 8:         // Search
+                if (head == NULL) {
+                    cout << "\nERROR : No link list to search in !! Initialize link list first;" << endl;
+                }
+                else {
+                    search(head);
+                }
+                break;
+            case 9:         // Exit
                 return 0;
             default:
                 cout << "Wrong choice entered ! "<<endl;
