@@ -143,6 +143,28 @@ int del(NODE * head) {
     return 1;
 }
 
+// Code for reversing the link list
+
+void reverse(NODE * head) {
+    NODE * prev, * curr, * nex ;
+    curr = head->next;
+    if (head->next == NULL) {
+        cout << " Linklist is empty. Nothing to reverse.";
+    }
+    else {
+        prev = NULL;
+        while (curr -> next != NULL) {
+            nex = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = nex;
+        }
+        curr->next = prev;
+        head->next = curr;
+        cout << " Linklist reversed.";
+    }
+}
+
 // Code to print the linklist
 
 void display(NODE * head) {
@@ -206,7 +228,7 @@ int main() {
                 // swap
                 break;
             case 5:         // Reverse
-                // reverse
+                reverse(head);
                 break;
             case 6:         // Print
                 display(head);
