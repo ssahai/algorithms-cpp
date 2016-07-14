@@ -14,6 +14,7 @@ class Graph {
   public:
     Graph(int n);
     void addEdge(int v1, int v2);
+    void displayAdjacencyList();
 };
 
 // Initialize graph
@@ -38,6 +39,56 @@ void Graph::addEdge(int v1, int v2) {
     vertices[v1-1]  = temp;
 }
 
+void Graph::displayAdjacencyList() {
+    for(int i=0;i <n; i++) {
+        cout << (i+1) << "  :-> ";
+        if (vertices[i] == NULL) {
+            cout << "NULL" <<endl;
+        }
+        else {
+            node* temp = vertices[i];
+            while(temp != NULL) {
+                cout << temp->vertex << " -> ";
+                temp = temp->next;
+            }
+            cout << "NULL" <<endl;
+        }
+    }
+}
+
+int menu (){
+    int t;
+    cout << "\nWhat would you like to do : "<<endl;
+    cout << "\t1. Add edge to the graph."<<endl;
+    cout << "\t2. Display the current adjacency list of the graph."<<endl;
+    cout << "\t3. Exit."<<endl;
+    cout << "\nEnter choice : ";
+    cin >> t;
+    return t;
+}
 int main () {
-    // 
+    int ch, n, x, y;
+    cout << "DIRECTED GRAPHS "<<endl;
+    cout << "=============== \n"<<endl;
+    cout << "Number of nodes in the directed Graph : ";
+    cin >> n;
+    Graph g(n);
+    cout << "\nINFO : Enter edges of the graph as space separated integers representing vertices.\n"<<endl;
+    while(1) {
+        ch = menu();
+        switch (ch) {
+            case 1:
+                cout << "Enter edge : ";
+                cin >> x >> y;
+                g.addEdge(x,y);
+                break;
+            case 2:
+                g.displayAdjacencyList();
+                break;
+            case 3:
+                return 0;
+            default:
+                cout << "Wrong choice entered. "<<endl;
+        }
+    }
 }
